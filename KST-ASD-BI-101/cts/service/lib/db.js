@@ -20,5 +20,5 @@ const Knex = require("knex"),
 module.exports = async () => {
     const knexCfg = await KnexCfg();
 
-    return Knex(KnexStringcase(knexCfg));
+    return Knex(KnexStringcase["default"](knexCfg));
 };

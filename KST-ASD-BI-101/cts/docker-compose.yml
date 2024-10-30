@@ -36,26 +36,22 @@ services:
         HOSTNAME: "${HOSTNAME}"
     ports:
       - "80:80"
-      - "443:443"
     container_name: docker_nginx
-    volumes:
-      - ./nginx/letsencrypt:/usr/share/nginx/html
-      - ./certbot/etc:/usr/share/keys
     networks:
       - public
 
-  certbot:
-    container_name: 'docker_certbot'
-    image: certbot/certbot
-    volumes:
-      - ./keys:/var/lib/letsencrypt
-      - ./nginx/letsencrypt:/data/letsencrypt
-      - ./certbot/etc:/etc/letsencrypt
-      - ./certbot/log:/var/log/letsencrypt
-    depends_on:
-      - nginx
-    networks:
-      - public
+  # certbot:
+  #   container_name: 'docker_certbot'
+  #   image: certbot/certbot
+  #   volumes:
+  #     - ./keys:/var/lib/letsencrypt
+  #     - ./nginx/letsencrypt:/data/letsencrypt
+  #     - ./certbot/etc:/etc/letsencrypt
+  #     - ./certbot/log:/var/log/letsencrypt
+  #   depends_on:
+  #     - nginx
+  #   networks:
+  #     - public
 
   webservice:
     build: .
@@ -75,7 +71,7 @@ services:
     environment:
       - HOSTNAME
       - DB_HOST
-      - DB_NAME
+      - DB_NAME=catapult_cts
       - DB_USERNAME
       - DB_PASSWORD
       # - DATABASE_USER=catapult
@@ -107,9 +103,9 @@ services:
       - ../:/usr/src/app/content # FIXME: Less than ideal - fix as we make contributions back to ADLNet
     environment:
       - HOSTNAME
-      - DATABASE_USER=catapult
-      - DATABASE_USER_PASSWORD=quartz
-      - DATABASE_NAME=catapult_player
+      - DATABASE_USER=${DB_USERNAME}
+      - DATABASE_USER_PASSWORD=${DB_PASSWORD}
+      - DATABASE_NAME=${DB_NAME}
       - CONTENT_URL=${PLAYER_CONTENT_URL}
       - LRS_ENDPOINT
       - LRS_USERNAME
@@ -132,8 +128,8 @@ services:
       - ./init_db.sh:/docker-entrypoint-initdb.d/init_db.sh:ro
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
-      - DATABASE_USER=catapult
-      - DATABASE_USER_PASSWORD=quartz
+      - DATABASE_USER=${DB_USERNAME}
+      - DATABASE_USER_PASSWORD=${DB_PASSWORD}
       - DATABASE_NAME=catapult_cts
       - PLAYER_DATABASE_NAME=catapult_player
     command: [
