@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+    Copyleft 2024 Kusala Tech
+
+    Licensed under the GNU General Public License v3.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+
+        https://www.gnu.org/licenses/gpl-3.0.en.html
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on
+    an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<!--
+    Copyright 2021 Rustici Software
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Software Development for Buddhist Innovation</title>
+    <link rel="stylesheet" href="style/base.css">
+</head>
+<body>
+<div class="main">
+    <div id="info-bar" class="info-bar">
+        Read-only mode, no data will be saved.
+    </div>
+    <div id="navigation" class="navigation">
+        <div class="navcorner" style="background-image: url('img/strata1.jpg')">
+            <div class="navtitle">Applied Software Development for Buddhist Innovation</div>
+        </div>
+        <div class="navmenu" id="navmenu">
+            <ul id="navmenuitems">
+            </ul>
+        </div>
+        <div class="footer-progress">Progress (resets every launch): <span id="footer-progress-value" class="footer-progress-value">0</span>%</div>
+
+        <div class="navexit">
+            <button class="exit-button">Exit</button>
+        </div>
+    </div>
+    <div id="content" class="content">
+        <!-- Content will be loaded in here. -->
+    </div>
+
+    <div class="navtoggle">
+        &#x2630;
+    </div>
+    <div id="warning-floater" class="warning-floater">
+        <div id="warning-icon" class="warning-icon" onclick="course.showErrorPanel()">
+            <div class="warning-icon-container">&#x26A0;</div>
+        </div>
+    </div>
+
+    <div id="score-panel" class="full-overlay">
+        <div class="message-content">
+            <div>Your final score is: <span id="score-panel-score"></span></div>
+            <div id="score-passed" class="score-passed">You achieved a passing score.</div>
+            <div id="score-failed" class="score-failed">You did not achieve a passing score.</div>
+            <button class="exit-button">Exit the Course</button>
+        </div>
+        Licensed under the GNU General Public License v3.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+        
+        
+            https://www.gnu.org/licenses/gpl-3.0.en.html
+        
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on
+         an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    </div>
+    <div id="bookmark-overlay" class="full-overlay">
+        <div class="message-content">
+            <div>Would you like to resume from your bookmark?</div>
+            <div>
+                <button class="restart-button">Restart From Beginning</button>
+                <button class="resume-button">Resume From Bookmark</button>
+            </div>
+        </div>
+    </div>
+    <div id="error-message-overlay" class="full-overlay">
+        <div class="message-content">
+            <div>One or more errors occurred.  Most recent error:</div>
+            <div id="error-content"></div>
+            <div>
+                <button class="close-button" onclick="course.hideErrorPanel()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="page1" class="contentpage" type="text/template" data-title="Course Description">
+    <div class="title">
+        Course Description
+        <div class="titleunderbar"></div>
+    </div>
+    <div class="body-content">
+        <p>This course explores the intersection of software development and Buddhist philosophy, aiming to develop innovative applications that align with Buddhist principles. Learners will learn how to apply Buddhist concepts to software design, development, and deployment, promoting ethical, compassionate, and sustainable technological solutions.</p>
+    </div>
+
+<script id="page2" class="contentpage" type="text/template" data-title="Course Objectives">
+    <div class="title">
+        Course Objectives
+        <div class="titleunderbar"></div>
+    </div>
+    <div class="body-content">
+        <ul>
+            <li><strong>Understand</strong> the core principles and concepts of Buddhism.</li>
+            <li><strong>Apply</strong> Buddhist ethics and values to software development practices.</li>
+            <li><strong>Develop</strong> software applications that promote mindfulness, compassion, and well-being.</li>
+            <li>Explore the potential of technology to serve as a tool for spiritual growth and social transformation.</li>
+            <li>Foster a critical and ethical approach to technology design and use.</li>
+        </ul>
+    </div>
+</script>
+
+<script id="page3" class="contentpage" type="text/template" data-title="Course Outline">
+    <div class="title">
+        Course Outline
+        <div class="titleunderbar"></div>
+    </div>
+    <div class="body-content">
+        <h3>Module 3: Integrating Buddhist Principles into Software Design</h3>
+        <ul>
+            <li>Applying Buddhist ethics to software design decisions</li>
+            <li>Promoting mindfulness and compassion in user interfaces</li>
+            <li>Designing for well-being and reducing unwholesome thought</li>
+            <li>Incorporating Buddhist concepts of interconnectedness and interdependence</li>
+        </ul>
+    </div>
+</script>
+
+<script id="page4" class="contentpage" type="text/template" data-title="Assessment Methods">
+    <div class="title">
+        Assessment Methods
+        <div class="titleunderbar"></div>
+    </div>
+    <div class="body-content">
+        <ul>
+            <li><strong>Assignments</strong>: Reflective essays, case studies, and programming projects</li>
+            <li><strong>Shared Discourse</strong>: Group discussion on Buddhist-inspired technologies</li>
+            <li><strong>Final Project</strong>: Development of a Buddhist-inspired software application</li>
+        </ul>
+    </div>
+</script>
+
+<script id="page5" class="contentpage" type="text/template" data-title="Course Resources">
+    <div class="title">
+        Course Resources
+        <div class="titleunderbar"></div>
+    </div>
+    <div class="body-content">
+        <p>Majjhima Nikāya - Satipaṭṭhāna Sutta</p>
+    </div>
+</script>
+
+<script src="js/cmi5.min.js"></script>
+<script src="js/course_cmi5.js"></script>
+
+<script src="js/course.js"></script>
+<script type="text/javascript">
+    let course;
+
+    (function() {
+        let queryParams = new URLSearchParams(document.location.search.substring(1));
+        course = new Course({
+
+            completionBehavior: "quiz",
+            enableBookmarking: true,
+            navigateOnLaunch: true,
+            navigationInjectIntoContent: true,
+            trackingPlugin: new CourseCmi5Plugin()
+        });
+
+        document.addEventListener("click", e => {
+            if (e.target && e.target.matches(".footerbar")) {
+                course.nextPage();
+            }
+            if (e.target && e.target.matches(".homebar")) {
+                course.previousPage();
+            }
+            // Capture all exit buttons.
+            if (e.target && e.target.matches(".exit-button")) {
+                course.exit();
+            }
+            // Capture navigation menu item interactions.
+            if (e.target && e.target.matches(".navmenuitem")) {
+                course.gotoPage(e.target.dataset.pageidx);
+            }
+            // Toggle the navigation panel in certain views.
+            if (e.target && e.target.matches(".navtoggle")) {
+                document.getElementById('navigation').classList.toggle('visible-narrow');
+            }
+        });
+    })();
+</script>
+</body>
+</html>
